@@ -59,16 +59,64 @@ int	my_getnbr(char *str)
 
 // ----------------------------------------
 
-int my_putchar(char c)
+void my_putchar(char c)
 {
     write(1, &c, 1);
+    return 0;
+}
+// ---------------------------------------
+
+int my_strlen(char* str)
+{
+	int len;
+
+	len = 0;
+	while(str[len] != '\0')
+	{
+		len = len + 1;
+	}
+	return (len);
+}
+
+// ---------------------------------------
+
+int infinity(char *ar01, char *ar02)
+{
+    int i = my_strlen(&ar01);
+    int j = my_strlen(&ar02);
+    int k = 0;
+    int o = 0;
+    
+    if (i < j)
+        k = j;
+    else
+        k = i;
+
+    while (k != '\0') {
+        int res = ((int)&ar01[(i-1)-o]) + ((int)&ar02[(j-1)-o]);
+        o++;
+        k--;
+        my_put_nbr(res);
+    }
     return 0;
 }
 
 // ---------------------------------------
 
-int main (int ac, char av)
-{
 
+int main (int ac, char *av)
+{
+    if(ac <= 2){
+        write(1,"erreur : ./infin_add '123' '123' ", 32);
+        my_putchar('\n');
+        return 0;
+    }
+    else
+    {
+        write(1, "=> ", 2);
+        infinity(av[2], av[3]);
+        my_putchar('\n');
+    }
+    
     return 0;
 }
